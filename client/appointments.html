@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/adoptions.css">
+    <link rel="stylesheet" href="css/appointments.css">
     
   </head>
   <body>
@@ -21,38 +21,19 @@
              </div>
              <ul class="list-unstyled components">
        
-                 <p>The Providers</p>
+                 <p>User</p>
                  <li class="active">
-                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
-                   <ul class="collapse list-unstyled" id="homeSubmenu">
-                       <li>
-                           <a href="#">Home 1</a>
-                       </li>
-                       <li>
-                           <a href="#">Home 2</a>
-                       </li>
-       
-                   </ul>
+                     <a href="appointments.html">Appointments</a>
                  </li>
                  <li>
                      <a href="browse.html">Browse</a>
                  </li>
                  <li>
-                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Adoptions</a>
-                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                         <li>
-                             <a href="#">Page 1</a>
-                         </li>
-                         <li>
-                             <a href="#">Page 2</a>
-                         </li>
-                         
-       
-                     </ul>
+                     <a href="adoptions.html">Adoptions</a>
                  </li>
        
                            <li>
-                             <a href="#">Policy</a>
+                             <a href="children.html">Children</a>
                          </li>
        
                 <li>
@@ -84,6 +65,7 @@
                            <th>Child Id</th>
                            <th>Organisation Id</th>
                            <th>Organisation Name</th>
+                           <th>Status</th>
                        </tr>
                    </thead>
                    <tbody id='mytable'>
@@ -118,6 +100,6 @@
                 });
         
         </script>
-        <script src="js/adoptions.js"></script>
+        <script src="js/appointments.js"></script>
 </body>
 </html>

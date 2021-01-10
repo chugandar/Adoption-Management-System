@@ -34,10 +34,10 @@ class Sqldb{
             console.log(error);
         }
     }
-    async getChild(){
+    async getChild(rid){
         try {
             const response = await new Promise((resolve,reject)=>{
-                const query = "SELECT CHILD_ID, NAME, DOB, AGE, GENDER, WEIGHT, HEIGHT, BLOOD_GROUP, REG_ID FROM child;";
+                const query = `SELECT CHILD_ID, NAME, DOB, AGE, GENDER, WEIGHT, HEIGHT, BLOOD_GROUP, REG_ID FROM child WHERE REG_ID=${rid};`;
                 connection.query(query,(err,results)=>{
                     if(err) reject(new Error(err.message));
                     resolve(results);

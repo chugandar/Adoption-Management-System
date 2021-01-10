@@ -49,6 +49,29 @@ class Db{
             // console.log(error);
         }
     }
+    async login(uid,pwd){
+        try {
+            const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
+            const db = conn.db('mydb');
+            const results = await db.collection('user').find({_id:pwd, "name": uid});
+            await conn.close();
+            return results;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async add_appointment(cid,rid,oname){
+        try {
+            const conn = await MongoClient.connect(url,{useUnifiedTopology: true, useNewUrlParser: true});
+            const db = conn.db('mydb');
+            var newquery = {$push:{"announcements":{"childid":cid,"orgid":rid,"organame":oname,"status":0}}};
+            const results = await db.collection('user').updateOne({_id:2},newquery);
+            await conn.close();
+            return results;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async insert(){
         try {
             const conn = await MongoClient.connect(url,{useUnifiedTopology: true, useNewUrlParser: true});

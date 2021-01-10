@@ -16,7 +16,7 @@
         { "childid": 3, "childname": "Ishkabir Kumar"}
     ],
     "announcements" : [
-        { "childid" : 1, "orgid": 1, "organame": "God's Child"},
-        { "childid": 2, "orgid": 2, "organame": "Falcon"}
+        { "childid" : 1, "orgid": 1, "organame": "God's Child", "status": 0},
+        { "childid": 2, "orgid": 2, "organame": "Falcon", "status": 0}
     ]
 }

@@ -1,0 +1,8 @@
+.header{
+    margin:50px;
+    text-align: center;
+}
+#wrong{
+    color: red;
+    font-weight: bold;
+}

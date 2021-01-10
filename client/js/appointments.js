@@ -33,6 +33,7 @@ $(() => {
                 <td>${element.childid}</td>
                 <td>${element.orgid}</td>
                 <td>${element.organame}</td>
+                <td>${element.status}</td>
             </tr>`)
         });
 

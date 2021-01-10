@@ -17,6 +17,7 @@ $(()=>{
             $(`#hi-${REGID}`).on('click',function(){
                 console.log('work-'+REGID)
                 localStorage.setItem('regid',REGID)
+                localStorage.setItem('orgname',NAME);
                 window.location.replace('./children.html');
             });
         });

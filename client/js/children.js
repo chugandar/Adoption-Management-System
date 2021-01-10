@@ -1,5 +1,15 @@
 $(()=>{
-    fetch("http://localhost:5000/child")
+    var regid = localStorage.getItem('regid');
+    var orgname = localStorage.getItem('orgname');
+    fetch("http://localhost:5000/child",{
+        method:'POST',
+        headers:{
+            'content-type':"application/json"
+        },
+        body:JSON.stringify({
+            rid: regid
+        })
+    })
     .then(response => response.json())
     .then(data => display(data.response))
 
@@ -21,7 +31,22 @@ $(()=>{
             $(`#request-${CHILD_ID}`).on('click',function(){
                 console.log(`work-`+CHILD_ID);
                 localStorage.setItem('childid',CHILD_ID);
-                localStorage.setItem()
+                fetch("http://localhost:5000/add-appointment",{
+                    method:'POST',
+                    headers:{
+                        'content-type':"application/json"
+                    },
+                    body:JSON.stringify({
+                        cid: CHILD_ID,
+                        rid: regid,
+                        oname: orgname,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => hello(data.response));
+                function hello(data){
+                    console.log("hi");
+                }
             })
 
         });
