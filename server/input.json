@@ -1,0 +1,22 @@
+{
+    "_id" : 2,
+    "aadharno" : 123456789101,
+    "address" : "#3, Vijayanagar, Bangalore",
+    "age" : 24,
+    "blood-group" : "ABp",
+    "gender" : "Male",
+    "income" : 12,
+    "job" : "software engineer",
+    "marital-status" : 0,
+    "name" : "Furqan",
+    "voterid" : 123456789101,
+    "History" : [
+        { "childid": 1, "childname": "Kirti Nandan"},
+        { "childid": 2, "childname" : "Giridhar Shanbhag"},
+        { "childid": 3, "childname": "Ishkabir Kumar"}
+    ],
+    "announcements" : [
+        { "childid" : 1, "orgid": 1, "organame": "God's Child"},
+        { "childid": 2, "orgid": 2, "organame": "Falcon"}
+    ]
+}

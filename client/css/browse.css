@@ -112,7 +112,9 @@ th{
 	background-color: grey;
 }
 
-
+.col-lg-3,.col-md-4,.col-ls-6{
+    border: 2px solid blue;
+}
 
 
 
