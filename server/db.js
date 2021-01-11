@@ -22,11 +22,11 @@ class Db{
     /**
      * Return announcements
      */
-    async getAnnouncements(){
+    async getAppointments(id){
         try {
             const conn = await MongoClient.connect(url,{useUnifiedTopology: true, useNewUrlParser: true});
             const db = conn.db('mydb');
-            const results = await db.collection('user').find({_id:2}).project({announcements: 1, _id:0}).toArray()//.then();
+            const results = await db.collection('user').find({_id:parseInt(id)}).project({announcements: 1, _id:0}).toArray()//.then();
             await conn.close();
             return results;
         } catch (error) {
@@ -53,31 +53,33 @@ class Db{
         try {
             const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
             const db = conn.db('mydb');
-            const results = await db.collection('user').find({_id:pwd, "name": uid});
+            const results = await db.collection('user').find({_id:pwd, "name": uid}).toArray();
             await conn.close();
             return results;
         } catch (error) {
             console.log(error);
         }
     }
-    async add_appointment(cid,rid,oname){
+    async add_appointment(cid,rid,oname,id){
         try {
             const conn = await MongoClient.connect(url,{useUnifiedTopology: true, useNewUrlParser: true});
             const db = conn.db('mydb');
             var newquery = {$push:{"announcements":{"childid":cid,"orgid":rid,"organame":oname,"status":0}}};
-            const results = await db.collection('user').updateOne({_id:2},newquery);
+            const results = await db.collection('user').updateOne({_id:parseInt(id)},newquery,{upsert: true});
             await conn.close();
             return results;
         } catch (error) {
             console.log(error);
         }
     }
-    async insert(){
+    async insert(body){
         try {
             const conn = await MongoClient.connect(url,{useUnifiedTopology: true, useNewUrlParser: true});
             const db = conn.db('mydb');
-            await db.collection('user').insertOne(ip);
+            const result = await db.collection('user').insertOne(body);
             await conn.close();
+            console.log(result);
+            return result;
         } catch (error) {
             console.log(error);
         }

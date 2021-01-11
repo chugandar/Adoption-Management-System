@@ -22,8 +22,17 @@ app.post('/child',async(req,res)=>{
 
 app.post('/add-appointment',async(req,res)=>{
     try {
-        const {cid,rid,oname} = req.body;
-        res.json({response: await (new Db().add_appointment(cid,rid,oname))});
+        const {cid,rid,oname,id} = req.body;
+        res.json({response: await (new Db().add_appointment(cid,rid,oname,id))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post('/adoption',async(req,res)=>{
+    try {
+        const {id} = req.body;
+        res.json({response: await (new Sqldb().getadoptions(id))});
     } catch (error) {
         console.log(error);
     }
@@ -32,7 +41,26 @@ app.post('/add-appointment',async(req,res)=>{
 app.post('/getlogin',async(req,res)=>{
     try {
         const {uid,pwd} = req.body;
+        console.log(uid+" "+pwd);
         res.json({response: await (new Db().login(uid,pwd))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post('/appointments', async (req,res)=>{
+    try {
+        const {id} = req.body;
+        console.log(id);
+        res.json({response: await (new Db().getAppointments(id))});
+    } catch (error) {
+        res.json({error})
+    }
+})
+
+app.post('/register',async(req,res)=>{
+    try {
+        res.json({response: await (new Db().insert(req.body))});
     } catch (error) {
         console.log(error);
     }
@@ -40,13 +68,6 @@ app.post('/getlogin',async(req,res)=>{
 
 //read
 //get all appointments
-app.get('/appointments', async (req,res)=>{
-    try {
-        res.json({response: await (new Db().getAnnouncements())});
-    } catch (error) {
-        res.json({error})
-    }
-})
 
 app.get('/organisation',async(req,res)=>{
     try {

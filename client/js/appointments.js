@@ -1,6 +1,14 @@
 $(() => {
-    fetch("http://localhost:5000/appointments")
-    .then(response => response.json())
+    var id = localStorage.getItem('password');
+    fetch("http://localhost:5000/appointments",{
+        method:'POST',
+        headers:{
+            'content-type': "application/json"
+        },
+        body:JSON.stringify({
+            id: id
+        })
+    }).then(response => response.json())
     .then(data => hello(data.response));
     
     /**

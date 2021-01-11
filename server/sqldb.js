@@ -30,7 +30,21 @@ class Sqldb{
                 })
             });
             return response;
-        } catch (error) {conn
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getadoptions(id){
+        try {
+            const response = await new Promise((resolve,reject)=>{
+                const query = `SELECT CHILD_ID,CHILD_NAME,REG_ID FROM adopted WHERE PARENT_ID=${id};`;
+                connection.query(query,(err,results)=>{
+                    if(err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return response;
+        } catch (error) {
             console.log(error);
         }
     }
