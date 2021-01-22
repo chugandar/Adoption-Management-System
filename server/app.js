@@ -20,6 +20,24 @@ app.post('/child',async(req,res)=>{
     }
 })
 
+app.post('/uploadimage',async(req,res)=>{
+    try {
+        const {pwd,url} = req.body;
+        res.json({response: await (new Db().uploadurl(pwd,url))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post('/getimgdetails',async(req,res)=>{
+    try {
+        const {pwd} = req.body;
+        res.json({response: await (new Db().getimgdetails(pwd))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 app.post('/add-appointment',async(req,res)=>{
     try {
         const {cid,rid,oname,id} = req.body;

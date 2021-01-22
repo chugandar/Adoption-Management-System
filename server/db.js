@@ -1,18 +1,6 @@
 const {MongoClient} = require('mongodb');
 const url = "mongodb://localhost:27017";
 const ip = require("./input.json")
-// MongoClient.connect(url,{useUnifiedTopology: true},(err, client) => {
-//     if(err) throw err;
-//     console.log("Database connected");
-//     const db = client.db('mydb');
-//     // db.collection('user').find().toArray().then(results => {
-//     //     console.log(results);
-//     //     client.close();
-//     // }).catch(err => console.error(err));
-
-// });
-
-// let instance=null;
 
 class Db{
     // instance: Db
@@ -54,6 +42,29 @@ class Db{
             const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
             const db = conn.db('mydb');
             const results = await db.collection('user').find({_id:pwd, "name": uid}).toArray();
+            await conn.close();
+            return results;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getimgdetails(id){
+        try {
+            const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
+            const db = conn.db('mydb');
+            const results = await db.collection('user').find({_id:parseInt(id)}).toArray();
+            await conn.close();
+            return results;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async uploadurl(id, Url){
+        try {
+            const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
+            const db = conn.db('mydb');
+            var newquery = {$set:{"url":Url}};
+            const results = await db.collection('user').updateOne({_id:parseInt(id)},newquery,{upsert: true});
             await conn.close();
             return results;
         } catch (error) {

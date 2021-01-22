@@ -2,8 +2,9 @@ $(()=>{
     $('#register-form').on('submit',function(event){
         event.preventDefault();
         console.log('submit');
-
+        var password = parseInt(event.target.password.value);
         console.log(event.target.name.value);
+        localStorage.setItem('password',password);
         fetch("http://localhost:5000/register",{
             method:'POST',
             headers:{
@@ -26,7 +27,7 @@ $(()=>{
         .then(data => inserted(data.response))
         function inserted(data){
             if(data){
-                window.location.href = "./login.html";
+                window.location.replace("./firebasetest.html");
             }
             else{
                 window.location.href = "./register.html";

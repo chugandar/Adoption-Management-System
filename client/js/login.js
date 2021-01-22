@@ -23,7 +23,7 @@ $(()=>{
             console.log(data);
             console.log(data.length);
             if(data.length){
-                window.location.href = "./appointments.html";
+                window.location.href = "./facerecognition.html";
             }
         }
     })
