@@ -29,6 +29,15 @@ app.post('/uploadimage',async(req,res)=>{
     }
 })
 
+app.post('/getmail',async(req,res)=>{
+    try {
+        const {id} = req.body;
+        res.json({response: await (new Db().getmail(id))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 app.post('/getimgdetails',async(req,res)=>{
     try {
         const {pwd} = req.body;
@@ -42,6 +51,15 @@ app.post('/add-appointment',async(req,res)=>{
     try {
         const {cid,rid,oname,id} = req.body;
         res.json({response: await (new Db().add_appointment(cid,rid,oname,id))});
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post('/add-appointmentsql',async(req,res)=>{
+    try {
+        const {cid,id,uname,email} = req.body;
+        res.json({response: await (new Sqldb().add_appointment(cid,id,uname,email))});
     } catch (error) {
         console.log(error);
     }

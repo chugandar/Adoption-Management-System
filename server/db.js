@@ -59,6 +59,17 @@ class Db{
             console.log(error);
         }
     }
+    async getmail(id){
+        try {
+            const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
+            const db = conn.db('mydb');
+            const results = await db.collection('user').find({_id:parseInt(id)}).toArray();
+            await conn.close();
+            return results;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async uploadurl(id, Url){
         try {
             const conn = await MongoClient.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});

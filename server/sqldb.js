@@ -48,6 +48,20 @@ class Sqldb{
             console.log(error);
         }
     }
+    async add_appointment(cid,id,uname,email){
+        try {
+            const response = await new Promise((resolve,reject)=>{
+                const query = `INSERT INTO shortlisted VALUES(${parseInt(id)},${parseInt(cid)},'${uname}',1,'${email}');`;
+                connection.query(query,(err,results)=>{
+                    if(err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async getChild(rid){
         try {
             const response = await new Promise((resolve,reject)=>{

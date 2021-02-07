@@ -8,6 +8,7 @@ $(()=>{
 		var username = event.target.Username.value;
 		var password = parseInt(event.target.Password.value);
         localStorage.setItem('password',password);
+        localStorage.setItem('username',username);
         fetch("http://localhost:5000/getlogin",{
             method:'POST',
             headers:{

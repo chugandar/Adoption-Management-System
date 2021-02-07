@@ -2,6 +2,25 @@ $(()=>{
     var regid = localStorage.getItem('regid');
     var orgname = localStorage.getItem('orgname');
     var id = localStorage.getItem('password');
+    var username = localStorage.getItem('username');
+    fetch("http://localhost:5000/getmail",{
+        method:'POST',
+        headers:{
+            'content-type':"application/json"
+        },
+        body:JSON.stringify({
+            id:id
+        })
+    })
+    .then(response => response.json())
+    .then(data => getemail(data.response))
+    var mail="";
+    function getemail(data){
+        data.forEach( element =>{
+            mail = element.address;
+            console.log("address"+ mail);
+        })
+    }
     fetch("http://localhost:5000/child",{
         method:'POST',
         headers:{
@@ -42,6 +61,26 @@ $(()=>{
                         rid: regid,
                         oname: orgname,
                         id: id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => hello(data.response));
+                function hello(data){
+                    console.log("hi");
+                    //window.location.href = "./appointments.html";
+                }
+                fetch("http://localhost:5000/add-appointmentsql",{
+                    method:'POST',
+                    headers:{
+                        'content-type':"application/json"
+                    },
+                    body:JSON.stringify({
+                        cid: CHILD_ID,
+                        rid: regid,
+                        oname: orgname,
+                        id: id,
+                        uname:username,
+                        email:mail
                     })
                 })
                 .then(response => response.json())
